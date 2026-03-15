@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dpc-app
+    volumes:
+       - ./:/var/www/html:cached
+       - vendor:/var/www/html/vendor
+    ports:
+      - "8086:80"
+    depends_on:
+      - db
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
+
+  db:
+    image: mysql:5.7
+    container_name: dpc-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dpc_db
+      MYSQL_USER: yellow_bdpc_useranana
+      MYSQL_PASSWORD: dpc_pass
+    ports:
+      - "3312:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
+  vendor:
