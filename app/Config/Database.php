@@ -110,6 +110,21 @@ class Database extends \CodeIgniter\Database\Config
 	{
 		parent::__construct();
 
+		// Pull DB settings from .env (cannot call env() in property defaults)
+		$this->default['hostname'] = env('database.default.hostname', $this->default['hostname']);
+		$this->default['username'] = env('database.default.username', $this->default['username']);
+		$this->default['password'] = env('database.default.password', $this->default['password']);
+		$this->default['database'] = env('database.default.database', $this->default['database']);
+		$this->default['DBDriver'] = env('database.default.DBDriver', $this->default['DBDriver']);
+		$this->default['port'] = (int) env('database.default.port', $this->default['port']);
+
+		$this->production['hostname'] = env('database.production.hostname', $this->default['hostname']);
+		$this->production['username'] = env('database.production.username', $this->default['username']);
+		$this->production['password'] = env('database.production.password', $this->default['password']);
+		$this->production['database'] = env('database.production.database', $this->default['database']);
+		$this->production['DBDriver'] = env('database.production.DBDriver', $this->default['DBDriver']);
+		$this->production['port'] = (int) env('database.production.port', $this->default['port']);
+
 		// Ensure that we always set the database group to 'tests' if
 		// we are currently running an automated test suite, so that
 		// we don't overwrite live data on accident.

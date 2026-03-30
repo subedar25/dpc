@@ -42,7 +42,7 @@ class Cron extends ResourceController
                 {
                     $arrDetails = array(
                                         'com_parentid'=>$hisDetails['id'],
-                                        'com_desc'=>$hisDetails['desc'],
+                                        'com_desc'=>$hisDetails['description'],
                                         'com_starttime'=>$hisDetails['start_time'],
                                         'com_endtime'=>$hisDetails['end_time'],
                                         'com_date'=>date('Y-m-d')
@@ -72,23 +72,26 @@ class Cron extends ResourceController
                  $starttime = $hisDetails['start_time'];
                     $endtime = $hisDetails['end_time'];
                     $time_interval = $hisDetails['com_interval'];
-                     while(strtotime($starttime) <= strtotime($endtime))
-                     {
-                    
-                        $maxTime = date("H", strtotime($starttime));
-                        
-                       $exection_time = $maxTime =='00' ? date("H:i", strtotime($endtime)) : date("H:i", strtotime($starttime));
+                     $startTimestamp = strtotime($starttime);
+                     $endTimestamp = strtotime($endtime);
+                     if ($endTimestamp <= $startTimestamp && $starttime !== $endtime) {
+                         $endTimestamp = strtotime($endtime . ' +1 day');
+                     }
 
-                       $companyModel = new   CompanymulhistoryModel();
+                     $currentTimestamp = $startTimestamp;
+                     while($currentTimestamp <= $endTimestamp)
+                     {
+                       $exection_time = date("H:i", $currentTimestamp);
+
+                       $companyModel = new CompanymulhistoryModel();
                        
                        $resultCompanycheck = $companyModel->where("com_parentid",$hisDetails['id'])->where('com_starttime',$exection_time)->where('com_date',date('Y-m-d'))->first();
-                       
                         
                          if(!$resultCompanycheck)
                          {
                              $arrDetails = array(
                                                  'com_parentid'=>$hisDetails['id'],
-                                                 'com_desc'=>$hisDetails['desc'],
+                                                 'com_desc'=>$hisDetails['description'],
                                                  'com_starttime'=>$exection_time,
                                                  'com_endtime'=>$hisDetails['end_time'],
                                                  'com_date'=>date('Y-m-d')
@@ -96,10 +99,7 @@ class Cron extends ResourceController
 
                             $companyModel->save($arrDetails);
                          }
-                        $starttime = date("H:i", strtotime("$starttime +".$time_interval." minutes"));
-                     // echo "<br>". $maxTime;
-                         if($maxTime >= 0 && $maxTime <=2)
-                          break;
+                        $currentTimestamp = strtotime("+$time_interval minutes", $currentTimestamp);
                      }
             }
             

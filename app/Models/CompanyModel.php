@@ -107,11 +107,12 @@ class CompanyModel extends Model {
             $end_time = "23:59";
         }
 
+         $display_time_plus_5 = date('H:i', strtotime(date('H:i') . ' +5 minutes'));
 
          $sql = "SELECT * FROM  $this->table AS CR ";
            $sql .="  LEFT JOIN $this->parentTable C ON (CR.com_parentid = C.id) ";
            $sql .=" WHERE 1 ";
-           $sql .=" AND CR.com_starttime < '".$display_time."' AND CR.com_endtime > '".$end_time."' ";
+           $sql .=" AND CR.com_starttime <= '".$display_time_plus_5."' AND CR.com_endtime > '".$end_time."' ";
            $sql .=" AND CR.com_date ='".$today_date."' ";
            $sql .=" AND C.com_showresult =1 ";
            $sql .=" AND C.com_working LIKE '%".$today."%' ";

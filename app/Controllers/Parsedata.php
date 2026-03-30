@@ -20,10 +20,11 @@ class Parsedata extends Controller
         $companyModel = new CompanyModel();
 
         try {
-            $html = $parser->fetchHtml($url);
+             $html = $parser->fetchHtml($url);
+
             if ($html) {
                 $results = $parser->parseResults($html);
-
+//echo "all result<pre>"; print_r($results );
                 if (empty($results)) {
                     $error = 'No results found';
                 } else {

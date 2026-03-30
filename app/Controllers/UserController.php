@@ -67,6 +67,7 @@ class UserController extends BaseController
   {
     set_title('Welcome | ' . SITE_NAME);
     $companyModel = new CompanyModel();
+    $categoryModel = new CategoryModel();
 
     $searchArray = array();
     $searchArrayQrrString = array();
@@ -77,6 +78,21 @@ class UserController extends BaseController
 
     $searchArrayQrrString['id'] = $id;
     $searchArray['parentid'] = $id;
+    // keep a predictable order so weekly chunks remain consistent
+    $searchArray['sort_by'] = "com_date";
+    // category name for display/context
+    $categoryRow = $id ? $categoryModel->find($id) : null;
+
+    $data['id'] = $id;
+    $data['categoryName'] = $categoryRow['name'] ?? '';
+    // today's result for this category (single day filter)
+    $todayDate = date('Y-m-d');
+    $data['todayResult'] = $companyModel->getData([
+      'parentid' => $id,
+      'fromdate' => $todayDate,
+      'todate'   => $todayDate,
+      'sort_by'  => 'com_date'
+    ]);
     $page = $this->request->getGet('page');
     $page = $page ? $page : 1;
     $Limit = 1000;
@@ -91,36 +107,53 @@ class UserController extends BaseController
     $data['pagination'] = $pagination;
 
     $hisdata = $companyModel->getData($searchArray, $startLimit, $Limit);
-    $resultdata = array();
+    // $resultdata = array();
     foreach ($hisdata as $singleDetails) {
       $resultDate = date('d-m-Y', strtotime($singleDetails->com_date));
       $resultdata[$resultDate] =  $singleDetails;
     }
 
-    // $data["historyData"] = $companyModel->getData($searchArray,$startLimit,$Limit);
-    //  echo "<pre>";  print_r($resultdata);die;
-    $startDate = isset($hisdata[0]->result_date) ? $hisdata[0]->result_date : '';
+    // Group results into Monday-Sunday weeks; include blanks for missing days
+    $all_records = [];
+    foreach ($hisdata as $singleDetails) {
+      $dt = new \DateTime($singleDetails->com_date);
+      // Determine week boundaries (Mon-Sun)
+      $weekStart = (clone $dt)->modify('monday this week')->format('Y-m-d');
+      $weekEnd   = (new \DateTime($weekStart))->modify('+6 days')->format('Y-m-d');
+      $key = $weekStart . '_' . $weekEnd;
+      if (!isset($all_records[$key])) {
+        $all_records[$key] = [
+          'start_date' => $weekStart,
+          'end_date'   => $weekEnd,
+          // collect by date, then expand to fixed slots
+          'items'      => []
+        ];
+      }
+      $all_records[$key]['items'][$singleDetails->com_date] = $singleDetails;
+    }
+    // Expand each week to fixed 7 slots (Mon-Sun), filling missing days with null
+    foreach ($all_records as $key => $week) {
+      $weekStartDate = new \DateTime($week['start_date']);
+      $expanded = [];
+      for ($i = 0; $i < 7; $i++) {
+        $day = $weekStartDate->format('Y-m-d');
+        $expanded[] = $week['items'][$day] ?? null;
+        $weekStartDate->modify('+1 day');
+      }
+      $all_records[$key]['items'] = $expanded;
+    }
+    
+$data['all_records'] = $all_records;
 
-    // get next sunday            
-    $date = new \DateTime($startDate);
-    // Modify the date it contains
-    $date->modify('next sunday');
-    $nextDate = $date->format('Y-m-d');
-    $data["startdate"] =  $startDate;
-    $data["enddate"] =  date('Y-m-d');
-    $data["nextDate"] =  $nextDate;
-
-    $data['searchArray'] = $searchArrayQrrString;
-    $data['resultdata'] = $resultdata;
-    $data['hisdata'] = $hisdata;
-
+// echo "<pre>"; print_r($data);die;
     $this->template->render('usertemplate', 'contents', 'user/jodichart', $data);
   }
 
   public function panelchart()
   {
     set_title('Welcome | ' . SITE_NAME);
-    $companyModel = new CompanyModel();
+     $companyModel = new CompanyModel();
+    $categoryModel = new CategoryModel();
 
     $searchArray = array();
     $searchArrayQrrString = array();
@@ -131,7 +164,21 @@ class UserController extends BaseController
 
     $searchArrayQrrString['id'] = $id;
     $searchArray['parentid'] = $id;
+    // keep a predictable order so weekly chunks remain consistent
     $searchArray['sort_by'] = "com_date";
+    // category name for display/context
+    $categoryRow = $id ? $categoryModel->find($id) : null;
+
+    $data['id'] = $id;
+    $data['categoryName'] = $categoryRow['name'] ?? '';
+    // today's result for this category (single day filter)
+    $todayDate = date('Y-m-d');
+    $data['todayResult'] = $companyModel->getData([
+      'parentid' => $id,
+      'fromdate' => $todayDate,
+      'todate'   => $todayDate,
+      'sort_by'  => 'com_date'
+    ]);
     $page = $this->request->getGet('page');
     $page = $page ? $page : 1;
     $Limit = 1000;
@@ -144,29 +191,47 @@ class UserController extends BaseController
 
     $data['startLimit'] = $startLimit;
     $data['pagination'] = $pagination;
+
     $hisdata = $companyModel->getData($searchArray, $startLimit, $Limit);
-    $resultdata = array();
+    // $resultdata = array();
     foreach ($hisdata as $singleDetails) {
       $resultDate = date('d-m-Y', strtotime($singleDetails->com_date));
       $resultdata[$resultDate] =  $singleDetails;
     }
-    //  echo "<pre>";print_r($resultdata);die;
-    // $data["historyData"] = $companyModel->getData($searchArray,$startLimit,$Limit);
-    //  echo "<pre>";  print_r($resultdata);die;
-    $startDate = isset($hisdata[0]->result_date) ? $hisdata[0]->result_date : '';
 
-    // get next sunday            
-    $date = new \DateTime($startDate);
-    // Modify the date it contains
-    $date->modify('next sunday');
-    $nextDate = $date->format('Y-m-d');
-    $data["startdate"] =  $startDate;
-    $data["enddate"] =  date('Y-m-d');
-    $data["nextDate"] =  $nextDate;
+    // Group results into Monday-Sunday weeks; include blanks for missing days
+    $all_records = [];
+    foreach ($hisdata as $singleDetails) {
+      $dt = new \DateTime($singleDetails->com_date);
+      // Determine week boundaries (Mon-Sun)
+      $weekStart = (clone $dt)->modify('monday this week')->format('Y-m-d');
+      $weekEnd   = (new \DateTime($weekStart))->modify('+6 days')->format('Y-m-d');
+      $key = $weekStart . '_' . $weekEnd;
+      if (!isset($all_records[$key])) {
+        $all_records[$key] = [
+          'start_date' => $weekStart,
+          'end_date'   => $weekEnd,
+          // collect by date, then expand to fixed slots
+          'items'      => []
+        ];
+      }
+      $all_records[$key]['items'][$singleDetails->com_date] = $singleDetails;
+    }
+    // Expand each week to fixed 7 slots (Mon-Sun), filling missing days with null
+    foreach ($all_records as $key => $week) {
+      $weekStartDate = new \DateTime($week['start_date']);
+      $expanded = [];
+      for ($i = 0; $i < 7; $i++) {
+        $day = $weekStartDate->format('Y-m-d');
+        $expanded[] = $week['items'][$day] ?? null;
+        $weekStartDate->modify('+1 day');
+      }
+      $all_records[$key]['items'] = $expanded;
+    }
+    
+$data['all_records'] = $all_records;
 
-    $data['searchArray'] = $searchArrayQrrString;
-    $data['resultdata'] = $resultdata;
-    $data['hisdata'] = $hisdata;
+// echo "<pre>"; print_r($data);die;
 
     $this->template->render('usertemplate', 'contents', 'user/panelchart', $data);
   }
@@ -371,7 +436,7 @@ class UserController extends BaseController
       if (!$resultCompanycheck) {
         $arrDetails = array(
           'com_parentid' => $hisDetails['id'],
-          'com_desc' => $hisDetails['desc'],
+          'com_desc' => $hisDetails['description'],
           'com_starttime' => $hisDetails['start_time'],
           'com_endtime' => $hisDetails['end_time'],
           'com_date' => date('Y-m-d')
@@ -407,13 +472,18 @@ class UserController extends BaseController
       $starttime = $hisDetails['start_time'];
       $endtime = $hisDetails['end_time'];
       $time_interval = $hisDetails['com_interval'];;
-      while (strtotime($starttime) <= strtotime($endtime)) {
+      $startTimestamp = strtotime($starttime);
+      $endTimestamp = strtotime($endtime);
+      if ($endTimestamp <= $startTimestamp && $starttime !== $endtime) {
+        $endTimestamp = strtotime($endtime . ' +1 day');
+      }
 
-        $maxTime = date("H", strtotime($starttime));
+      $currentTimestamp = $startTimestamp;
+      while ($currentTimestamp <= $endTimestamp) {
 
-        $exection_time = $maxTime == '00' ? date("H:i", strtotime($endtime)) : date("H:i", strtotime($starttime));
+        $exection_time = date("H:i", $currentTimestamp);
 
-        $companyModel = new   CompanymulhistoryModel();
+        $companyModel = new CompanymulhistoryModel();
 
         $resultCompanycheck = $companyModel->where("com_parentid", $hisDetails['id'])->where('com_starttime', $exection_time)->where('com_date', date('Y-m-d'))->first();
 
@@ -421,7 +491,7 @@ class UserController extends BaseController
         if (!$resultCompanycheck) {
           $arrDetails = array(
             'com_parentid' => $hisDetails['id'],
-            'com_desc' => $hisDetails['desc'],
+            'com_desc' => $hisDetails['description'],
             'com_starttime' => $exection_time,
             'com_endtime' => $hisDetails['end_time'],
             'com_date' => date('Y-m-d')
@@ -429,10 +499,7 @@ class UserController extends BaseController
 
           $companyModel->save($arrDetails);
         }
-        $starttime = date("H:i", strtotime("$starttime +" . $time_interval . " minutes"));
-        // echo "<br>". $maxTime;
-        if ($maxTime >= 0 && $maxTime <= 2)
-          break;
+        $currentTimestamp = strtotime("+$time_interval minutes", $currentTimestamp);
       }
     }
 

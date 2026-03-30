@@ -61,7 +61,7 @@
                                             <th scope="row"><?php echo ++$startLimit ; ?></th>
                                            
                                             <td><?php echo $kdata->name; ?></td>
-                                            <td><?php echo $kdata->desc; ?></td>
+                                            <td><?php echo $kdata->description; ?></td>
                                             <td><?php echo $kdata->start_time; ?></td>
                                             <td><?php echo $kdata->end_time; ?></td>
                                             <td><?php echo $kdata->com_showresult ? "Active" : "Inactive" ; ?></td>

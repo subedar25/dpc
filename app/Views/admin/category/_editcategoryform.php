@@ -74,7 +74,7 @@
 
         <div class="row  form-group">
             <label>Description</label>
-            <textarea rows="4" class="form-control" name="com_desc" id="com_desc"><?php echo $orderDetails->desc; ?></textarea>
+            <textarea rows="4" class="form-control" name="com_desc" id="com_desc"><?php echo $orderDetails->description; ?></textarea>
         </div>
 
         <div class="row  form-group">

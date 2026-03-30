@@ -73,7 +73,7 @@ class ParseDataService
         $results = [];
         for ($i = $startIndex; $i < count($lines); $i++) {
             $line = $lines[$i];
-            if (preg_match('/^\d{1,3}-\d{1,2}-\d{1,3}$/', $line)) {
+            if (preg_match('/^\d{1,3}-\d{1,2}(?:-\d{1,3})?$/', $line)) {
                 $name = $lines[$i - 1] ?? '';
                 $name = preg_replace('/^#+\s*/', '', $name);
                 $name = trim($name);

@@ -78,7 +78,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `cat_userid` int(11) DEFAULT 0,
   `name` varchar(100) NOT NULL,
-  `desc` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `com_interval` varchar(20) NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `cat_userid`, `name`, `desc`, `start_time`, `end_time`, `com_interval`, `status`, `result_type`, `com_showresult`, `com_working`, `com_order`, `com_template`, `com_created`) VALUES
+INSERT INTO `category` (`id`, `cat_userid`, `name`, `description`, `start_time`, `end_time`, `com_interval`, `status`, `result_type`, `com_showresult`, `com_working`, `com_order`, `com_template`, `com_created`) VALUES
 (14, 0, 'TIME BAZAR', '', '13:00:00', '14:00:00', '', 1, 'single', 1, 'MON,TUE,WED,THU,FRI,SAT', NULL, '', '2025-10-26 16:25:11'),
 (3, 0, 'MILAN DAY', '', '15:00:00', '17:00:00', '', 1, 'single', 1, 'MON,TUE,WED,THU,FRI,SAT', NULL, '', '2025-10-27 09:05:57'),
 (5, 0, 'KALYAN', ' ', '15:40:00', '17:40:00', '', 1, 'single', 1, 'MON,TUE,WED,THU,FRI,SAT', NULL, '', '2025-10-26 16:22:31'),

@@ -45,10 +45,10 @@ $routes->cli('singleresult', 'UserController::generatesingleresult');
 $routes->cli('multipleresults', 'UserController::generatemultipleresult');
 $routes->cli('backupmultipleresult', 'UserController::backupmultipleresult');
 $routes->cli('viewresult', 'UserController::viewresult');
-$routes->cli('cron', 'Crons/Cron::index');
+$routes->cli('cron', 'Crons\Cron::index');
 
 
-$routes->get('cron', 'Crons/Cron::index');
+$routes->get('cron', 'Crons\Cron::index');
 
 $routes->get('singleresult', 'UserController::generatesingleresult');
 $routes->get('multipleresults', 'UserController::generatemultipleresult');
@@ -97,6 +97,9 @@ $routes->post('cyclemotor', 'Cyclemotor::index');
 $routes->get('cyclemotor', 'Cyclemotor::index');
 $routes->get('parsedata', 'Parsedata::index');
 $routes->get('liveresultjson', 'UserController::liveResultJson');
+
+// API: update company result
+$routes->post('api/company-result', 'Api\\CompanyResultApi::update');
 
 
 /***

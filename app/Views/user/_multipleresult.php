@@ -108,3 +108,259 @@ foreach ($allMultipleCompany as $comDetails) {
     }
 }
 ?>
+
+
+
+
+
+<div class="my-table mr-sl">
+    <h3 style="font-size:22px; border: 2px solid white;text-align:center;border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-color:white;margin-top:4px;background-color:#ff00a2;color:white;text-shadow: 1px 1px 2px #000;font-weight: 700;padding:5px;"> MAST STARLINE <a href="https://dpboss1.pro/pannel/MASTSTARLINE/193" style="text-decoration:none;font-size:14px;color:white;background-color:#000;border:1px solid white;border-radius:7px;float:right;margin:1px 3px;padding:2px 4px;display:;">CHART</a></h3>
+    <div class="roulette-container" style="background-color:#d9c3ed;overflow: hidden;width: 100%;">
+        <img src="./DPBOSS _ SATTA MATKA _ KALYAN MATKA _ MATKA RESULT _ MATKA _ SATTA_files/4.png" class="imgrotate">
+        <div class="result-box">
+            <span class="result-text">xxx-x</span>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Result</th>
+                <th>Time</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> 11:15 AM </td>
+                <td> *** </td>
+                <td> 03:45 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 11:30 AM </td>
+                <td> *** </td>
+                <td> 04:00 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 11:45 AM </td>
+                <td> *** </td>
+                <td> 04:15 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 12:00 PM </td>
+                <td> *** </td>
+                <td> 04:30 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 12:15 PM </td>
+                <td> *** </td>
+                <td> 04:45 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 12:30 PM </td>
+                <td> *** </td>
+                <td> 05:00 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 12:45 PM </td>
+                <td> *** </td>
+                <td> 05:15 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 01:00 PM </td>
+                <td> *** </td>
+                <td> 05:30 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 01:15 PM </td>
+                <td> *** </td>
+                <td> 05:45 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 01:30 PM </td>
+                <td> *** </td>
+                <td> 06:00 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 01:45 PM </td>
+                <td> *** </td>
+                <td> 06:15 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 02:00 PM </td>
+                <td> *** </td>
+                <td> 06:30 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 02:15 PM </td>
+                <td> *** </td>
+                <td> 06:45 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 02:30 PM </td>
+                <td> *** </td>
+                <td> 07:00 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 02:45 PM </td>
+                <td> *** </td>
+                <td> 07:15 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 03:00 PM </td>
+                <td> *** </td>
+                <td> 07:30 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 03:15 PM </td>
+                <td> *** </td>
+                <td> 07:45 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 03:30 PM </td>
+                <td> *** </td>
+                <td> 08:00 PM </td>
+                <td> *** </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="my-table mr-sl">
+    <h3 style="font-size:22px; border: 2px solid white;text-align:center;border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-color:white;margin-top:4px;background-color:#ff00a2;color:white;text-shadow: 1px 1px 2px #000;font-weight: 700;padding:5px;"> TEEN PATTI <a href="https://dpboss1.pro/pannel/TEENPATTI/194" style="text-decoration:none;font-size:14px;color:white;background-color:#000;border:1px solid white;border-radius:7px;float:right;margin:1px 3px;padding:2px 4px;display:;">CHART</a></h3>
+    <div class="roulette-container" style="background-color:#ffffff; padding:10px;">
+        <div class="slots-images"><img src="./DPBOSS _ SATTA MATKA _ KALYAN MATKA _ MATKA RESULT _ MATKA _ SATTA_files/2.png" class="slot-image"><img src="./DPBOSS _ SATTA MATKA _ KALYAN MATKA _ MATKA RESULT _ MATKA _ SATTA_files/2.png" class="slot-image"><img src="./DPBOSS _ SATTA MATKA _ KALYAN MATKA _ MATKA RESULT _ MATKA _ SATTA_files/2.png" class="slot-image"></div>
+        <div class="result-text">
+            <span>xxx-x</span>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Result</th>
+                <th>Time</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> 10:30 AM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/587" class="btn btn-sm btn-primary">***</a> </td>
+                <td> 05:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/594" class="btn btn-sm btn-primary">***</a> </td>
+            </tr>
+            <tr>
+                <td> 11:30 AM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/588" class="btn btn-sm btn-primary">***</a> </td>
+                <td> 06:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/595" class="btn btn-sm btn-primary">***</a> </td>
+            </tr>
+            <tr>
+                <td> 12:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/589" class="btn btn-sm btn-primary">***</a> </td>
+                <td> 07:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/596" class="btn btn-sm btn-primary">***</a> </td>
+            </tr>
+            <tr>
+                <td> 01:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/590" class="btn btn-sm btn-primary">***</a> </td>
+                <td> 08:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/597" class="btn btn-sm btn-primary">***</a> </td>
+            </tr>
+            <tr>
+                <td> 02:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/591" class="btn btn-sm btn-primary">***</a> </td>
+                <td> 09:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/598" class="btn btn-sm btn-primary">***</a> </td>
+            </tr>
+            <tr>
+                <td> 03:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/592" class="btn btn-sm btn-primary">***</a> </td>
+                <td> 10:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/599" class="btn btn-sm btn-primary">***</a> </td>
+            </tr>
+            <tr>
+                <td> 04:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/593" class="btn btn-sm btn-primary">***</a> </td>
+                <td> 11:30 PM </td>
+                <td> <a href="https://dpboss1.pro/admin-touch-result/194/600" class="btn btn-sm btn-primary">***</a> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="my-table mr-sl">
+    <h3 style="font-size:22px; border: 2px solid white;text-align:center;border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-color:white;margin-top:4px;background-color:#ff00a2;color:white;text-shadow: 1px 1px 2px #000;font-weight: 700;padding:5px;"> MAIN STARLINE <a href="https://dpboss1.pro/pannel/MAINSTARLINE/180" style="text-decoration:none;font-size:14px;color:white;background-color:#000;border:1px solid white;border-radius:7px;float:right;margin:1px 3px;padding:2px 4px;display:;">CHART</a></h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Result</th>
+                <th>Time</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> 09:05 AM </td>
+                <td> 260-8 </td>
+                <td> 03:05 PM </td>
+                <td> 440-8 </td>
+            </tr>
+            <tr>
+                <td> 10:05 AM </td>
+                <td> 129-2 </td>
+                <td> 04:05 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 11:05 AM </td>
+                <td> 170-8 </td>
+                <td> 05:05 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 12:05 PM </td>
+                <td> 135-9 </td>
+                <td> 06:05 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 01:05 PM </td>
+                <td> 368-7 </td>
+                <td> 07:05 PM </td>
+                <td> *** </td>
+            </tr>
+            <tr>
+                <td> 02:05 PM </td>
+                <td> 299-0 </td>
+                <td> 08:05 PM </td>
+                <td> *** </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- DPBOSS Special Game Zone -->
+<div class="sky-23">
+    <h4>DPBOSS Special Game Zone</h4>
+    <a href="#"> All market free fix game </a>
+    <a href="#"> Ratan Khatri Fix Panel Chart </a>
+    <a href=""> Matka Final Number Trick Chart </a>
+    <!-- <a href="ever-green-tricks/satta-matka-tricks-zone.html"> EverGreen Trick Zone And Matka Tricks By DPBOSS </a> -->
+</div>
