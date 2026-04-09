@@ -83,6 +83,7 @@
                  </table>
              </div>
          </div>
+         
          <div class="chart-result">
              <div><?php echo $categoryName; ?></div>
              <span> <?php if (isset($todayResult[0]) && is_object($todayResult[0])) { ?>
@@ -109,7 +110,7 @@
          <!-- adv & links -->
          <!-- footer -->
          <footer style="font-style: normal;">
-             <a class="ftr-icon" href="#">Dpboss5g.in</a>
+             <a class="ftr-icon" href="<?php echo site_url('/'); ?>">Dpboss</a>
              <p>
                  All Rights Reseved®
                  <br>

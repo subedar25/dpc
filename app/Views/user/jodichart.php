@@ -1,4 +1,4 @@
-<?php //print_r($hisdata);die;?>
+
 <div class="container-fluid">
     <div>
         <h1 class="chart-h1"> <?php echo $categoryName; ?> JODI CHART</h1>

@@ -39,6 +39,7 @@ $routes->get('fix-open-to-close-by-date', 'UserController::fixopentoclosebydate'
 $routes->get('jodi-chart-family-matka', 'UserController::jodichartfamilymatka');
 $routes->get('penal-count-chart', 'UserController::penalcountchart');
 $routes->get('penal-total-chart', 'UserController::penaltotalchart');
+$routes->get('All-22-Card-Panna-Penal-Patti-Chart', 'UserController::cardpanelpattichart');
 
 //for cron 
 $routes->cli('singleresult', 'UserController::generatesingleresult');

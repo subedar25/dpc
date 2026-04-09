@@ -36,9 +36,9 @@
             <div style="border-bottom: 1px solid red;padding-bottom: 13px;"></div>
 
         <?php } ?>
-        <?php $description = $resultdata['description'] ? $resultdata['description'] : ($resultdata['com_desc'] ? $resultdata['com_desc'] : ""); ?>
+        <?php $bg_color = $resultdata['bg_color'] ? $resultdata['bg_color'] : ""; ?>
 
-        <?php $background_color = $description  ? "background-color: #f7f40e;" : "background-color:#fec790;"; ?>
+        <?php $background_color = $bg_color  ? "background-color: ".$bg_color.";" : "background-color:#fec790;"; ?>
 
         <div style="<?php echo $background_color; ?>">
             <h4><?php echo $resultdata['name']; ?></h4>

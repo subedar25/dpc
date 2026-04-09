@@ -3,16 +3,7 @@
     <div class="lv-mc" >
         Sabse Tezz Live Result Yahi Milega
     <div id="live-result-list">
-        <!-- <span class="h8">PUNA BAZAR</span>
-        <span class="h9"> 258-5</span>
-
-        <button onclick="window.location.reload()">Refresh</button>
-
-        <span class="h8">PAISA BAZAR DAY</span>
-        <span class="h9">Loading....</span>
-
-        <button onclick="window.location.reload()">Refresh</button>
-        <br> -->
+      
     </div>
     </div>
 </div>

@@ -34,7 +34,7 @@ class UserController extends BaseController
     $companyMulModel = new CompanymulhistoryModel();
     $todayresult = $companyModel->getTodayResult();
     $liveresultData = $companyModel->getLiveResult();
-    $allMultipleCompany = $categoryModel->getData(array('result_type' => "multiple","sort_by"=>"com_order"));
+    $allMultipleCompany = $categoryModel->getData(array('result_type' => "multiple", "sort_by" => "com_order"));
 
     $keywords = "";
     $description = "";
@@ -52,6 +52,7 @@ class UserController extends BaseController
 
     //        print_r($todayresult);die;
     $data = array();
+    $data['action'] = 'index';
     $data['settingData'] = $settingData;
 
     $data['liveresultData'] = $liveresultData;
@@ -142,17 +143,17 @@ class UserController extends BaseController
       }
       $all_records[$key]['items'] = $expanded;
     }
-    
-$data['all_records'] = $all_records;
 
-// echo "<pre>"; print_r($data);die;
+    $data['all_records'] = $all_records;
+
+    // echo "<pre>"; print_r($data);die;
     $this->template->render('usertemplate', 'contents', 'user/jodichart', $data);
   }
 
   public function panelchart()
   {
     set_title('Welcome | ' . SITE_NAME);
-     $companyModel = new CompanyModel();
+    $companyModel = new CompanyModel();
     $categoryModel = new CategoryModel();
 
     $searchArray = array();
@@ -228,10 +229,10 @@ $data['all_records'] = $all_records;
       }
       $all_records[$key]['items'] = $expanded;
     }
-    
-$data['all_records'] = $all_records;
 
-// echo "<pre>"; print_r($data);die;
+    $data['all_records'] = $all_records;
+
+    // echo "<pre>"; print_r($data);die;
 
     $this->template->render('usertemplate', 'contents', 'user/panelchart', $data);
   }
@@ -362,56 +363,56 @@ $data['all_records'] = $all_records;
 
   public function loadmoreesult()
   {
-      
 
-        $data = array();
 
-        $companyModel = new CompanymulhistoryModel();
+    $data = array();
 
-        $searchArray = array();
-        $searchArrayQrrString = array();
+    $companyModel = new CompanymulhistoryModel();
 
-        $paginationnew = new Paginationnew();
+    $searchArray = array();
+    $searchArrayQrrString = array();
 
-        $id = $this->request->getGet('id');
+    $paginationnew = new Paginationnew();
 
-        $searchArrayQrrString['id'] =   $searchArray['com_parentid'] = $id;
-        $searchArray['group_by'] = "com_date";
-        $page = $this->request->getGet('page');
-        $page = $page ? $page : 1;
-        $Limit = 10;
-        $totalRecord = $companyModel->getData($searchArray, '', '', 1);
+    $id = $this->request->getGet('id');
 
-        $startLimit = ($page - 1) * $Limit;
-        $data['startLimit'] = $startLimit;
+    $searchArrayQrrString['id'] =   $searchArray['com_parentid'] = $id;
+    $searchArray['group_by'] = "com_date";
+    $page = $this->request->getGet('page');
+    $page = $page ? $page : 1;
+    $Limit = 10;
+    $totalRecord = $companyModel->getData($searchArray, '', '', 1);
 
-        $pagination = $paginationnew->getPaginate($totalRecord, $page, $Limit);
+    $startLimit = ($page - 1) * $Limit;
+    $data['startLimit'] = $startLimit;
 
-        $data['startLimit'] = $startLimit;
-        $data['pagination'] = $pagination;
+    $pagination = $paginationnew->getPaginate($totalRecord, $page, $Limit);
 
-        $data["historyData"] = $companyModel->getData($searchArray, $startLimit, $Limit);
-        $data["companymulhistory"] = $companyModel;
-        //    echo "<pre>"; print_r($data["historyData"]);die;
-        $startDate = isset($data["historyData"][0]) ? $data["historyData"][0]->com_date : '';
+    $data['startLimit'] = $startLimit;
+    $data['pagination'] = $pagination;
 
-        // get next sunday            
-        $date = new \DateTime($startDate);
-        // Modify the date it contains
-        $date->modify('next sunday');
-        $nextDate = $date->format('Y-m-d');
-        $data["startdate"] =  $startDate;
-        $data["nextDate"] =  $nextDate;
-        $data['action'] = "viewresult";
-        $data['searchArray'] = $searchArrayQrrString;
-      if(count($data["historyData"])){
-        if (isset($data["historyData"][0])  && $data["historyData"][0]->com_template == 'newsingletable') {
-          echo view('user/_viewallresultsingle', $data);
-        } else {
-         echo view('user/_viewallresult', $data);
-        }
+    $data["historyData"] = $companyModel->getData($searchArray, $startLimit, $Limit);
+    $data["companymulhistory"] = $companyModel;
+    //    echo "<pre>"; print_r($data["historyData"]);die;
+    $startDate = isset($data["historyData"][0]) ? $data["historyData"][0]->com_date : '';
+
+    // get next sunday            
+    $date = new \DateTime($startDate);
+    // Modify the date it contains
+    $date->modify('next sunday');
+    $nextDate = $date->format('Y-m-d');
+    $data["startdate"] =  $startDate;
+    $data["nextDate"] =  $nextDate;
+    $data['action'] = "viewresult";
+    $data['searchArray'] = $searchArrayQrrString;
+    if (count($data["historyData"])) {
+      if (isset($data["historyData"][0])  && $data["historyData"][0]->com_template == 'newsingletable') {
+        echo view('user/_viewallresultsingle', $data);
+      } else {
+        echo view('user/_viewallresult', $data);
       }
-      return "";
+    }
+    return "";
   }
 
 
@@ -610,8 +611,7 @@ $data['all_records'] = $all_records;
 
     $data = array();
 
-      $this->template->render('usertemplate', 'contents', 'user/matkajodichart', $data);
-   
+    $this->template->render('usertemplate', 'contents', 'user/matkajodichart', $data);
   }
 
   public function fixopentoclosebydate()
@@ -620,8 +620,7 @@ $data['all_records'] = $all_records;
 
     $data = array();
 
-      $this->template->render('usertemplate', 'contents', 'user/fixopentoclosebydate', $data);
-   
+    $this->template->render('usertemplate', 'contents', 'user/fixopentoclosebydate', $data);
   }
 
   public function jodichartfamilymatka()
@@ -630,8 +629,7 @@ $data['all_records'] = $all_records;
 
     $data = array();
 
-      $this->template->render('usertemplate', 'contents', 'user/jodichartfamilymatka', $data);
-   
+    $this->template->render('usertemplate', 'contents', 'user/jodichartfamilymatka', $data);
   }
 
   public function penalcountchart()
@@ -640,8 +638,7 @@ $data['all_records'] = $all_records;
 
     $data = array();
 
-      $this->template->render('usertemplate', 'contents', 'user/penalcountchart', $data);
-   
+    $this->template->render('usertemplate', 'contents', 'user/penalcountchart', $data);
   }
 
   public function penaltotalchart()
@@ -650,8 +647,15 @@ $data['all_records'] = $all_records;
 
     $data = array();
 
-      $this->template->render('usertemplate', 'contents', 'user/penaltotalchart', $data);
-   
+    $this->template->render('usertemplate', 'contents', 'user/penaltotalchart', $data);
   }
 
+  public function cardpanelpattichart()
+  {
+    set_title('Welcome | ' . SITE_NAME);
+
+    $data = array();
+
+    $this->template->render('usertemplate', 'contents', 'user/cardpanelpattichart', $data);
+  }
 }

@@ -128,18 +128,68 @@ class CompanyModel extends Model {
 
         $today_date = date('Y-m-d');
 
-        $sql = "SELECT *, C.id AS id FROM  $this->parentTable C
-                LEFT JOIN $this->table AS CR ON (C.id = CR.com_parentid)
-                AND com_date='" . $today_date . "' WHERE 1 AND `result_type` = 'single' ";
-                
-         $sql .=" AND C.com_showresult =1 ";
-         $sql .= "  ORDER BY CR.com_date DESC,CR.com_starttime ASC,C.start_time ASC";
-        // $sql .= " LIMIT ".$total_count;
-        //  echo $sql;die;
-        $query = $this->db->query($sql);
-        $result = $query->getResultArray();
+        // 1) Load all active single-result categories
+        $categories = $this->db->query("SELECT * FROM {$this->parentTable} WHERE result_type='single' AND com_showresult=1")->getResultArray();
+        if (!$categories) {
+            return [];
+        }
 
-        return $result;
+        $ids = array_column($categories, 'id');
+        $idList = implode(",", array_map('intval', $ids));
+
+        // 2) Fetch all results up to today for these companies, newest first
+        $rows = $this->db->query("
+            SELECT * FROM {$this->table}
+            WHERE com_parentid IN ($idList) AND com_date <= '{$today_date}'
+            ORDER BY com_date DESC, com_starttime DESC
+        ")->getResultArray();
+
+        // Helper: check if all three fields are empty
+        $isEmptyResult = function ($row) {
+            if (!$row) return true;
+            $o = isset($row['com_open']) ? trim($row['com_open']) : '';
+            $m = isset($row['com_mid']) ? trim($row['com_mid']) : '';
+            $c = isset($row['com_close']) ? trim($row['com_close']) : '';
+            return ($o === '' && $m === '' && $c === '');
+        };
+
+        // 3) Choose best row per company: prefer most recent non-empty; if none, most recent (even empty)
+        $best = [];
+        foreach ($rows as $row) {
+            $pid = $row['com_parentid'];
+            if (!isset($best[$pid])) {
+                $best[$pid] = $row; // provisional (newest)
+                continue;
+            }
+            if ($isEmptyResult($best[$pid]) && !$isEmptyResult($row)) {
+                $best[$pid] = $row; // replace empty with non-empty older
+            }
+        }
+
+        // 4) Merge category info with chosen rows
+        $results = [];
+        foreach ($categories as $cat) {
+            $pid = $cat['id'];
+            $row = $best[$pid] ?? null;
+            $results[] = array_merge($cat, $row ?? []);
+        }
+
+        // Sort consolidated by scheduled start_time asc, then com_starttime asc, then result date desc
+        usort($results, function ($a, $b) {
+            $st = strcmp($a['start_time'] ?? '', $b['start_time'] ?? '');
+            if ($st !== 0) {
+                return $st;
+            }
+            $cst = strcmp($a['com_starttime'] ?? '', $b['com_starttime'] ?? '');
+            if ($cst !== 0) {
+                return $cst;
+            }
+            $da = $a['com_date'] ?? '';
+            $db = $b['com_date'] ?? '';
+            return strcmp($da, $db); // oldest date first
+        });
+
+        return $results;
     }
 
     function getLastResult($parentid) {

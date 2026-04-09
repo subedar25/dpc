@@ -190,6 +190,7 @@ class Category extends BaseController {
             "com_showresult"=>$formdata['showresult'],
             "com_working"=>$working,
             "com_order"=>isset($formdata['com_order']) ? $formdata['com_order'] :0,
+            "bg_color"=>isset($formdata['bg_color']) ? $formdata['bg_color'] : '',
         );
         
         
@@ -239,6 +240,7 @@ class Category extends BaseController {
             "com_showresult"=>$formdata['showresult'],
             "com_working"=>$working,
             "com_order"=>isset($formdata['com_order']) ? $formdata['com_order'] : 0,
+            "bg_color"=>isset($formdata['bg_color']) ? $formdata['bg_color'] : '',
         );
         
         

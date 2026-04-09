@@ -79,6 +79,10 @@
                                         <label>Description</label>
                                         <textarea rows="2" class="form-control" name="com_desc" id="com_desc"></textarea>
                                     </div>
+                                    <div class="row form-group">
+                                        <label>Background Color</label>
+                                        <input class="form-control" name="bg_color" id="bg_color" type="text" placeholder="#ff0000 or red">
+                                    </div>
 
                                     <div class="row  form-group">
 

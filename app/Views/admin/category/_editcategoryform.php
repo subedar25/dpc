@@ -76,6 +76,10 @@
             <label>Description</label>
             <textarea rows="4" class="form-control" name="com_desc" id="com_desc"><?php echo $orderDetails->description; ?></textarea>
         </div>
+        <div class="row form-group">
+            <label>Background Color</label>
+            <input class="form-control" name="bg_color" id="bg_color" type="text" value="<?php echo isset($orderDetails->bg_color) ? $orderDetails->bg_color : ''; ?>" placeholder="#ff0000 or red">
+        </div>
 
         <div class="row  form-group">
 

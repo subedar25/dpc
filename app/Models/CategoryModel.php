@@ -10,7 +10,7 @@ class CategoryModel extends Model {
 
     protected $table = 'category';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id','cat_userid', 'name', 'description', 'start_time', 'end_time', 'com_interval', 'status', 'result_type','result_mode','com_showresult','com_working','com_order','com_created','com_template'];
+    protected $allowedFields = ['id','cat_userid', 'name', 'description', 'start_time', 'end_time', 'com_interval', 'status', 'result_type','result_mode','com_showresult','com_working','com_order','com_created','com_template','bg_color'];
     protected $db;
 
     public function getData($searchArray = array(), $offset = '', $limit = '', $coutOnly = '', $counField = '', $showsql = '') {

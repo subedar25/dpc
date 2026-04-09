@@ -5,5 +5,5 @@
     <a href="<?php echo site_url('jodi-chart-family-matka'); ?>">Matka Jodi Family Chart</a>
     <a href="<?php echo site_url('penal-count-chart'); ?>">Penal Count Chart</a>
     <a href="<?php echo site_url('penal-total-chart'); ?>">Penal Total Chart</a>
-    <a href="#">All 220 Card List</a>
+    <a href="<?php echo site_url('All-22-Card-Panna-Penal-Patti-Chart'); ?>">All 220 Card List</a>
 </div>
